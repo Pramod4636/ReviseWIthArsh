@@ -1,0 +1,30 @@
+// Sumbision Link : https://leetcode.com/problems/evaluate-reverse-polish-notation/solutions/2992001/c-easy-solution/
+
+class Solution {
+public:
+    int evalRPN(vector<string>& tokens) {
+        stack<long long > st;
+        for( auto x : tokens)
+        {
+            if(x=="+" || x=="-" || x=="*" || x=="/")
+            {
+                long long op2 = st.top();
+                st.pop();
+                long long  op1 = st.top();
+                st.pop();
+                long long ans ;
+                if( x =="+") ans = op1 + op2;
+                else if( x=="-" ) ans = op1 - op2;
+                else if ( x == "*") ans = op1 * op2;
+                else 
+                ans = op1 /op2;
+                st.push(ans);
+            }
+            else
+            {
+                st.push(stoi(x));
+            }
+        }
+        return st.top();
+    }
+};
