@@ -1,0 +1,30 @@
+Submition LInk : https://leetcode.com/problems/combination-sum-iii/submissions/870399726/
+
+class Solution {
+public:
+    void fun(int i , int T,int k , vector<int> &path ,vector<vector<int>> &ans ) // gives combination using 1....i with sum 
+    {   if(k==0) // all k elment selcted 
+        {
+            if(T == 0 ) // sum fullfill 
+            {
+                ans.push_back(path);
+            }
+            return;
+        }
+        if( i == 0 ) return ; // digit lismit is ended . 
+        fun(i-1,T,k,path,ans);
+
+        if( i <= T )
+        {
+            path.push_back(i);
+            fun(i-1,T-i,k-1,path,ans);
+            path.pop_back();
+        }
+    }
+    vector<vector<int>> combinationSum3(int k, int n) {
+        vector<vector<int>> ans;
+        vector<int> path;
+        fun(9,n,k,path,ans);
+        return ans;
+    }
+};
